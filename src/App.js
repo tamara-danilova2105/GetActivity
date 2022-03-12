@@ -1,23 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
+import fone from './fone.jpg'
+import { useState } from "react"
 
 function App() {
+
+  const [listTips, setListTips] = useState([])
+  const [arrayTips] = useState([])
+
+  const fetchTips = async () => {
+    const response = await fetch("https://www.boredapi.com/api/activity/");
+    const data = await response.json();
+
+    if(listTips.length === 0) {
+      document.querySelector('.deletebtn').style.display = 'block'
+    }
+    if (listTips.length > 3) {
+      document.querySelector('.addbtn').style.display = 'none'
+      document.querySelector('h2').style.display = 'block'
+    }
+    if (listTips.length > 4) {
+      return false
+    }
+    
+    arrayTips.push(data.activity)
+    console.log(arrayTips);
+    setListTips([...arrayTips])
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div>
+          <img className='fon' src={fone} alt='фон'/>
+        </div>
+
+        <div className='container'>
+          <h1>Get a activity</h1>
+          <button className='addbtn' onClick={fetchTips}>Add Activity</button>
+          <h2>Let's start!</h2>
+          <div className='container-tips'>
+            {listTips.map((item, index) => (
+              <p key={index}>{index+1}. {item}</p>
+            ))}
+          </div>
+          <button className='deletebtn' onClick={() => setListTips([])}>Delet All</button>
+        </div>
     </div>
   );
 }
