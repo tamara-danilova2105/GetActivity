@@ -5,7 +5,7 @@ import { useState } from "react"
 function App() {
 
   const [listTips, setListTips] = useState([])
-  const [arrayTips] = useState([])
+  const [arrayTips, setArrayTips] = useState([])
 
   const fetchTips = async () => {
     const response = await fetch("https://www.boredapi.com/api/activity/");
@@ -27,6 +27,19 @@ function App() {
     setListTips([...arrayTips])
   }
 
+  const deleteTips = () =>{
+    setListTips([])
+    setArrayTips([])
+    document.querySelector('.deletebtn').style.display = 'none'
+    document.querySelector('.addbtn').style.display = 'block'
+    document.querySelector('h2').style.display = 'none'
+  }
+
+  const wordCross = (event) =>{
+    const tipsItem = event.target;
+    tipsItem.classList.toggle('crossed')
+  }
+
 
   return (
     <div className="App">
@@ -40,10 +53,10 @@ function App() {
           <h2>Let's start!</h2>
           <div className='container-tips'>
             {listTips.map((item, index) => (
-              <p key={index}>{index+1}. {item}</p>
+              <p onClick={wordCross} key={index}>{index+1}. {item}</p>
             ))}
           </div>
-          <button className='deletebtn' onClick={() => setListTips([])}>Delet All</button>
+          <button className='deletebtn' onClick={() => deleteTips()}>Delete All</button>
         </div>
     </div>
   );

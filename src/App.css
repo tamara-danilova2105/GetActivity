@@ -33,6 +33,7 @@ p {
   font-weight: bold;
   text-shadow: 1px 1px #EFFFFD;
   margin-top: 30px;
+  padding-left: 20px;
 }
 
 .addbtn {
@@ -71,6 +72,14 @@ p {
   width: 100%;
   text-align: left;
 }
+
+.crossed {
+  text-decoration: line-through 2px #F473B9;
+  text-shadow: none;
+  background-color: #f0f0f04b;
+  border-radius: 20px;
+}
+
 
 @media all and (max-width: 800px) {
   .container {
