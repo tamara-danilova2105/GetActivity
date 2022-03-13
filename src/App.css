@@ -34,6 +34,7 @@ p {
   text-shadow: 1px 1px #EFFFFD;
   margin-top: 30px;
   padding-left: 20px;
+  cursor: pointer;
 }
 
 .addbtn {

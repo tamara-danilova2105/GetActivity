@@ -23,7 +23,6 @@ function App() {
     }
     
     arrayTips.push(data.activity)
-    console.log(arrayTips);
     setListTips([...arrayTips])
   }
 
@@ -48,7 +47,7 @@ function App() {
         </div>
 
         <div className='container'>
-          <h1>Get a activity</h1>
+          <h1>Get an activity</h1>
           <button className='addbtn' onClick={fetchTips}>Add Activity</button>
           <h2>Let's start!</h2>
           <div className='container-tips'>
